@@ -8,4 +8,6 @@ catboost
 dill
 fastapi
 uvicorn
+streamlit
+requests
 #-e .

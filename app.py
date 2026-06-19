@@ -6,6 +6,7 @@ from src.pipeline.predict_pipeline import PredictPipeline, CustomData
 
 app = FastAPI()
 
+# Field names must match src/constants.py (CATEGORICAL_COLUMNS + NUMERICAL_COLUMNS)
 class StudentInput(BaseModel):
     gender: str
     race_ethnicity: str
@@ -21,16 +22,9 @@ def index():
 
 @app.post("/predict")
 def predict_datapoint(input_data: StudentInput):
-    data = CustomData(
-        gender=input_data.gender,
-        race_ethnicity=input_data.race_ethnicity,
-        parental_level_of_education=input_data.parental_level_of_education,
-        lunch=input_data.lunch,
-        test_preparation_course=input_data.test_preparation_course,
-        reading_score=input_data.reading_score,
-        writing_score=input_data.writing_score
-    )
-    pred_df = data.get_data_as_a_dataframe()
+    data = CustomData(**input_data.model_dump())
+    
+    pred_df = data.get_data_as_a_data_frame()
 
     predict_pipeline = PredictPipeline()
 

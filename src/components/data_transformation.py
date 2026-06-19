@@ -12,6 +12,7 @@ from sklearn.compose import ColumnTransformer
 from src.exception import CustomException
 from src.logger import logging
 from src.utils import save_object
+from src.constants import TARGET_COLUMN, NUMERICAL_COLUMNS, CATEGORICAL_COLUMNS
 
 @dataclass
 class DataTransformationConfig:
@@ -26,8 +27,8 @@ class DataTransformation:
         This Function is responsible for data transformation
         '''
         try:
-            numerical_columns = ["writing score", "reading score"]
-            categorical_columns = ["gender", "race/ethnicity", "parental level of education", "lunch", "test preparation course",]
+            numerical_columns = NUMERICAL_COLUMNS
+            categorical_columns = CATEGORICAL_COLUMNS
 
             num_pipeline = Pipeline(
                 steps=[
@@ -67,7 +68,7 @@ class DataTransformation:
             preprocessing_obj = self.get_data_transformation_object()
 
             #target column
-            target_column_name = "math score"
+            target_column_name = TARGET_COLUMN
 
             #Separate X and y for train and test
             input_feature_train_df = train_df.drop(columns=[target_column_name])

@@ -5,6 +5,7 @@ import pandas as pd
 
 from src.exception import CustomException
 from src.utils import load_object
+from src.constants import NUMERICAL_COLUMNS, CATEGORICAL_COLUMNS
 
 class PredictPipeline:
 
@@ -47,18 +48,12 @@ class CustomData:
         self.reading_score = reading_score
         self.writing_score = writing_score
 
-    def get_data_as_a_dataframe(self):
+    def get_data_as_a_data_frame(self):
         try:
+            all_columns = CATEGORICAL_COLUMNS + NUMERICAL_COLUMNS
             custom_data_input_dict = {
-                "gender": [self.gender],
-                "race_ethnicity": [self.race_ethnicity],
-                "parental_level_of_education": [self.parental_level_of_education],
-                "lunch": [self.lunch],
-                "test_preparation_course": [self.test_preparation_course],
-                "reading_score": [self.reading_score],
-                "writing_score": [self.writing_score],
+            col: [getattr(self, col)] for col in all_columns
             }
-
             return pd.DataFrame(custom_data_input_dict)
         
         except Exception as e:
