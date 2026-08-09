@@ -3,9 +3,9 @@ import sys
 
 import pandas as pd
 
-from src.exception import CustomException
-from src.utils import load_object
-from src.constants import NUMERICAL_COLUMNS, CATEGORICAL_COLUMNS
+from studentPerformance.exception import CustomException
+from studentPerformance.utils import load_object
+from studentPerformance.constants import NUMERICAL_COLUMNS, CATEGORICAL_COLUMNS
 
 class PredictPipeline:
 

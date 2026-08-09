@@ -5,8 +5,8 @@ from dataclasses import dataclass
 import pandas as pd
 from sklearn.model_selection import train_test_split
 
-from src.exception import CustomException
-from src.logger import logging
+from studentPerformance.exception import CustomException
+from studentPerformance.logger import logging
 
 
 @dataclass

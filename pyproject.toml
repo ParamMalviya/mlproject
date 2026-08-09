@@ -1,0 +1,33 @@
+# ---------------------------------------------------------------
+# BUILD SYSTEM
+# tells pip which tool to build this project with, and what it
+# has to install first before it can run that tool
+# ---------------------------------------------------------------
+[build-system]
+requires = ["setuptools>=61.0"]
+build-backend = "setuptools.build_meta"
+
+
+# ---------------------------------------------------------------
+# PROJECT METADATA
+# the standard fields describing this package
+# ---------------------------------------------------------------
+[project]
+name = "studentPerformance"
+version = "0.1.0"
+description = "End-to-end regression pipeline predicting student math scores, served over FastAPI + Streamlit"
+readme = "README.md"
+requires-python = ">=3.11"
+authors = [
+    { name = "Param Malviya" },
+]
+
+
+# ---------------------------------------------------------------
+# PACKAGE DISCOVERY
+# without this, setuptools searches the project ROOT and would try
+# to package notebook/, artifacts/ etc. too. this limits the search
+# to src/ only, so just my studentPerformance package gets installed
+# ---------------------------------------------------------------
+[tool.setuptools.packages.find]
+where = ["src"]

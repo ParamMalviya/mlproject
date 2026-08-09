@@ -14,9 +14,9 @@ from sklearn.linear_model import LinearRegression
 from sklearn.neighbors import KNeighborsRegressor
 from sklearn.metrics import r2_score
 
-from src.exception import CustomException
-from src.logger import logging
-from src.utils import save_object, evaluate_models
+from studentPerformance.exception import CustomException
+from studentPerformance.logger import logging
+from studentPerformance.utils import save_object, evaluate_models
 
 @dataclass
 class ModelTrainerConfig:

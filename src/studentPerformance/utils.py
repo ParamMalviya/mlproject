@@ -5,7 +5,7 @@ import dill
 from sklearn.model_selection import GridSearchCV
 from sklearn.metrics import r2_score
 
-from src.exception import CustomException
+from studentPerformance.exception import CustomException
 
 def save_object(file_path, obj):
     try:

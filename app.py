@@ -2,7 +2,7 @@ from fastapi import FastAPI
 from pydantic import BaseModel
 import uvicorn
 
-from src.pipeline.predict_pipeline import PredictPipeline, CustomData
+from studentPerformance.pipelines.predict_pipeline import PredictPipeline, CustomData
 
 app = FastAPI()
 
