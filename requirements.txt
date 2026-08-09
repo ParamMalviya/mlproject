@@ -1,13 +1,18 @@
-pandas
-numpy
-matplotlib
-seaborn
-scikit-learn
-xgboost
-catboost
-dill
-fastapi
-uvicorn
-streamlit
-requests
+# --- app dependencies (imported by src/studentPerformance) ---
+pandas==3.0.5
+numpy==2.4.6
+scikit-learn==1.9.0
+xgboost==3.2.0
+catboost==1.2.10
+dill==0.4.1
+fastapi==0.141.1
+uvicorn==0.52.1
+streamlit==1.61.1
+requests==2.34.2
+
+# --- notebook-only (EDA in notebook/, not used by the app) ---
+matplotlib==3.11.1
+seaborn==0.13.2
+
+# --- editable install of this project's own package ---
 -e .
