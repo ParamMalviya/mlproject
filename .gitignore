@@ -218,3 +218,8 @@ __marimo__/
 .streamlit/secrets.toml
 
 catboost_info/
+
+# derived training artifacts — regenerate with the train pipeline
+artifacts/raw.csv
+artifacts/train.csv
+artifacts/test.csv
