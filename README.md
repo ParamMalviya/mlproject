@@ -111,7 +111,7 @@ python -m studentPerformance.pipelines.train_pipeline
 
 ## Results
 
-The pipeline selects the best of seven regressors by test R². On the current run the best model reached **R² ≈ 0.88** on the held-out test set. Training hard-fails if no model clears R² = 0.60, as a quality guard.
+The pipeline selects the best of seven regressors by test R². On the current run the best model was **Linear Regression**, reaching **R² ≈ 0.88** (0.8804) on the held-out test set. Training hard-fails if no model clears R² = 0.60, as a quality guard.
 
 ## Design decisions
 
