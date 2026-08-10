@@ -113,9 +113,27 @@ python -m studentPerformance.pipelines.train_pipeline
 
 The pipeline selects the best of seven regressors by test R². On the current run the best model was **Linear Regression**, reaching **R² ≈ 0.88** (0.8804) on the held-out test set. Training hard-fails if no model clears R² = 0.60, as a quality guard.
 
+## Deployment
+
+**Live demo:** https://studentperf-param-hrhraadudahxc7bx.austriaeast-01.azurewebsites.net
+
+The app is containerized and deployed on **Azure App Service (Free F1 tier)** as a custom Docker container pulled from Docker Hub (`parammalviya/studentperformance:latest`). Streamlit serves the public UI on port 8080; FastAPI runs internally on port 8000; both are launched by `start.sh`.
+
+Build and push the image:
+
+```powershell
+docker build --provenance=false --sbom=false -t parammalviya/studentperformance:latest .
+docker push parammalviya/studentperformance:latest
+```
+
+`--provenance=false` keeps the build to a single-platform image; buildx's default attestation manifest can confuse App Service's image handling.
+
+**Azure App Service gotcha (this cost me hours):** leave the portal's **Startup command** field *blank*. The Dockerfile already defines `CMD ["./start.sh"]`, which runs from the image's working directory. Typing a startup command in the portal *overrides* that CMD and runs it from the wrong context — the container boots but never binds the public port, and you'll see *"Container did not respond to startup probe on port 80."* Set the public port via the Container tab's **Port** field or the `WEBSITES_PORT=8080` app setting.
+
 ## Design decisions
 
 - **src-layout package** (`src/studentPerformance/`) installed editable — consistent with my other portfolio projects, and avoids the tutorial-artifact package literally named `src`.
 - **Config as dataclasses**, kept deliberately lean rather than a full YAML config-manager — appropriate for a pipeline this size.
 - **Committed** the trained model, preprocessor, and source CSV so the repo runs out of the box; **gitignored** the regenerable split CSVs to avoid churn.
 - **Shared logger + exception modules** standardized across my three portfolio projects for consistent, debuggable output.
+
