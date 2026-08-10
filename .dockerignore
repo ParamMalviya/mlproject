@@ -1,0 +1,25 @@
+# version control + virtual env
+.git
+.gitignore
+.venv
+venv
+
+# python bytecode caches
+__pycache__/
+*.pyc
+*.pyo
+
+# runtime logs
+logs/
+
+# notebooks, research, EDA — not needed to serve predictions
+notebook/
+research/
+
+# derived training data — the serving app only needs model.pkl + preprocessor.pkl
+artifacts/raw.csv
+artifacts/train.csv
+artifacts/test.csv
+
+# catboost training scratch
+catboost_info/
