@@ -6,7 +6,7 @@ import pandas as pd
 from sklearn.model_selection import train_test_split
 
 from studentPerformance.exception import CustomException
-from studentPerformance.logger import logging
+from studentPerformance.logger import logger
 
 
 @dataclass
@@ -20,23 +20,23 @@ class DataIngestion:
         self.ingestion_config = DataIngestionConfig()
 
     def initiate_data_ingestion(self):
-        logging.info("Entered the data ingestion method")
+        logger.info("Entered the data ingestion method")
         try:
             df = pd.read_csv(os.path.join("notebook", "data", "StudentsPerformance.csv"))
             df.columns = df.columns.str.replace(" ", "_").str.replace("/", "_")
-            logging.info("Read the dataset as dataframe")
+            logger.info("Read the dataset as dataframe")
 
             os.makedirs(os.path.dirname(self.ingestion_config.train_data_path), exist_ok=True)
 
             df.to_csv(self.ingestion_config.raw_data_path, index=False, header=True)
 
-            logging.info("Train Test initiated")
+            logger.info("Train Test initiated")
             train_set, test_set = train_test_split(df, test_size=0.2, random_state=42)
 
             train_set.to_csv(self.ingestion_config.train_data_path, index=False, header=True)
             test_set.to_csv(self.ingestion_config.test_data_path, index=False, header=True)
 
-            logging.info("Ingestion of the data is completed")
+            logger.info("Ingestion of the data is completed")
 
             return(
                     self.ingestion_config.train_data_path,

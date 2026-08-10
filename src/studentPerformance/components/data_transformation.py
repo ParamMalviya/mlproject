@@ -10,7 +10,7 @@ from sklearn.pipeline import Pipeline
 from sklearn.compose import ColumnTransformer
 
 from studentPerformance.exception import CustomException
-from studentPerformance.logger import logging
+from studentPerformance.logger import logger
 from studentPerformance.utils import save_object
 from studentPerformance.constants import TARGET_COLUMN, NUMERICAL_COLUMNS, CATEGORICAL_COLUMNS
 
@@ -45,8 +45,8 @@ class DataTransformation:
                 ]
             )
 
-            logging.info(f"Categorical columns: {categorical_columns}")
-            logging.info(f"Numerical columns: {numerical_columns}")
+            logger.info(f"Categorical columns: {categorical_columns}")
+            logger.info(f"Numerical columns: {numerical_columns}")
 
             preprocessor = ColumnTransformer([
                 ("num_pipeline", num_pipeline, numerical_columns),
@@ -62,9 +62,9 @@ class DataTransformation:
         try:
             train_df = pd.read_csv(train_path)
             test_df = pd.read_csv(test_path)
-            logging.info("Read train and test data complete")
+            logger.info("Read train and test data complete")
 
-            logging.info("Obtaining Preprocessor object")
+            logger.info("Obtaining Preprocessor object")
             preprocessing_obj = self.get_data_transformation_object()
 
             #target column

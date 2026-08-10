@@ -15,7 +15,7 @@ from sklearn.neighbors import KNeighborsRegressor
 from sklearn.metrics import r2_score
 
 from studentPerformance.exception import CustomException
-from studentPerformance.logger import logging
+from studentPerformance.logger import logger
 from studentPerformance.utils import save_object, evaluate_models
 
 @dataclass
@@ -29,7 +29,7 @@ class ModelTrainer:
     def initiate_model_trainer(self, train_arr, test_arr):
         try:
             
-            logging.info("Spliting into training and test set")
+            logger.info("Spliting into training and test set")
             x_train, y_train, x_test, y_test = (
                 train_arr[:,:-1],
                 train_arr[:,-1],
@@ -95,7 +95,7 @@ class ModelTrainer:
 
             if best_model_score < 0.6:
                 raise CustomException("No best model found")
-            logging.info("Best model found on both training and test dataset")
+            logger.info("Best model found on both training and test dataset")
 
             save_object(
                 file_path= self.model_trainer_config.trained_model_file_path,

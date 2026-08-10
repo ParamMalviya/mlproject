@@ -3,6 +3,9 @@ from pydantic import BaseModel
 import uvicorn
 
 from studentPerformance.pipelines.predict_pipeline import PredictPipeline, CustomData
+from studentPerformance.logger import setup_logging, logger
+
+setup_logging()   # wire up logging before the server starts
 
 app = FastAPI()
 
