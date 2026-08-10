@@ -2,6 +2,8 @@
 
 An end-to-end regression pipeline that predicts a student's **math score** from their reading/writing scores and background features. It trains seven regressors, keeps the best by R², and serves live predictions through a FastAPI backend with a Streamlit UI.
 
+Live demo: https://studentperf-param-hrhraadudahxc7bx.austriaeast-01.azurewebsites.net
+
 ## What it does
 
 Given a student's profile — gender, race/ethnicity, parental education, lunch type, test-prep status, reading score, writing score — the model predicts their likely math score. It's a supervised regression problem on the "Students Performance in Exams" dataset.
