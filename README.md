@@ -1,3 +1,6 @@
+
+<img width="1122" height="1290" alt="Screenshot 2026-08-13 093800" src="https://github.com/user-attachments/assets/8f9f29ca-a91c-4a40-be64-0cb88b216f72" />
+
 # Student Performance Predictor
 
 An end-to-end regression pipeline that predicts a student's **math score** from their reading/writing scores and background features. It trains seven regressors, keeps the best by R², and serves live predictions through a FastAPI backend with a Streamlit UI.
